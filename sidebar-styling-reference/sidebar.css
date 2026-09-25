@@ -1,0 +1,130 @@
+/* Reference sidebar styling copied from the HTML design.
+   Keep this separate while you build the React app step by step. */
+
+:root {
+  --bg-base: #0f1117;
+  --bg-surface: #161b27;
+  --bg-raised: #1a2033;
+  --border: #1e2535;
+  --border-hover: #2d3748;
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-muted: #475569;
+  --text-faint: #334155;
+  --accent: #3b82f6;
+  --accent-bg: #1e3a5f;
+  --accent-text: #60a5fa;
+  --radius-md: 8px;
+}
+
+.sidebar {
+  width: 210px;
+  background: var(--bg-surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.logo-area {
+  padding: 18px 16px 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.logo-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.logo-box {
+  width: 30px;
+  height: 30px;
+  background: var(--accent);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.logo-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.logo-sub {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 1px;
+}
+
+.nav {
+  flex: 1;
+  padding: 10px 8px;
+  overflow-y: auto;
+}
+
+.nav::-webkit-scrollbar {
+  width: 4px;
+}
+
+.nav::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+.nav-grp {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  padding: 10px 8px 4px;
+}
+
+.ni {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 9px;
+  border-radius: var(--radius-md);
+  font-size: 12px;
+  color: var(--text-muted);
+  cursor: pointer;
+  margin-bottom: 1px;
+  transition: background .15s, color .15s;
+  user-select: none;
+}
+
+.ni:hover {
+  background: var(--bg-raised);
+  color: var(--text-secondary);
+}
+
+.ni.active {
+  background: var(--accent-bg);
+  color: var(--accent-text);
+  font-weight: 500;
+}
+
+.ni i {
+  font-size: 15px;
+}
+
+.ni .badge {
+  margin-left: auto;
+  background: var(--bg-raised);
+  color: var(--text-muted);
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 8px;
+}
+
+.ni.active .badge {
+  background: var(--accent-bg);
+  color: var(--accent-text);
+}
