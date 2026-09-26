@@ -7,11 +7,16 @@ import jobRoutes from './routes/job.routes.js';
 import documentRoutes from './routes/document.routes.js';
 import interviewRoutes from './routes/interview.routes.js';
 const app = express();
-const port = 8080;
+const port = process.env.PORT || 8080;
 app.use(express.json());
 // ── CORS ──────────────────────────────────────────────────────────────────────
+const allowedOrigins = new Set((process.env.CORS_ORIGINS || 'http://localhost:5173').split(',').map(origin => origin.trim()));
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
+    const origin = req.headers.origin;
+    if (origin && (allowedOrigins.has(origin) || allowedOrigins.has('*'))) {
+        res.header('Access-Control-Allow-Origin', allowedOrigins.has('*') ? '*' : origin);
+        res.header('Vary', 'Origin');
+    }
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     if (req.method === 'OPTIONS') {
@@ -39,3 +44,4 @@ app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
 //# sourceMappingURL=index.js.map
+

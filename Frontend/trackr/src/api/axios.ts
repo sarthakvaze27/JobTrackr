@@ -1,4 +1,4 @@
-const BASE = "http://localhost:8080/api";
+const BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080/api";
 
 import type { Job } from "../components/board/TableView";
 
@@ -141,3 +141,4 @@ export async function deleteJob(id: string, token: string) {
 
   if (!res.ok) throw new Error("Unable to delete job");
 }
+

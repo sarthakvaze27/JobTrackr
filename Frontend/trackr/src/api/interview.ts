@@ -1,4 +1,4 @@
-const BASE = "http://localhost:8080/api";
+const BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080/api";
 
 export type RoundLabel   = 'Intro Call' | 'Technical' | 'HR Round' | 'Final Round' | 'Other';
 export type InterviewStatus = 'Upcoming' | 'Completed' | 'Awaiting Feedback' | 'Cancelled';

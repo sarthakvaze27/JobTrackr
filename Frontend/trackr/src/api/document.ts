@@ -1,4 +1,5 @@
-const BASE = "http://localhost:8080/api";
+const BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080/api";
+const SERVER_ORIGIN = BASE.replace(/\/api\/?$/, "");
 
 export interface AppDocument {
   id: string;
@@ -31,7 +32,7 @@ function toAppDocument(doc: ApiDocument): AppDocument {
     fileType:    doc.fileType,
     linkedJobId: doc.linkedJobId,
     size:        doc.size,
-    url:         doc.url.startsWith("http") ? doc.url : `http://localhost:8080${doc.url}`,
+    url:         doc.url.startsWith("http") ? doc.url : `${SERVER_ORIGIN}${doc.url}`,
     date:        new Date(doc.createdAt).toLocaleDateString("en-US", {
                    year: "numeric", month: "short", day: "numeric"
                  }),
@@ -77,3 +78,5 @@ export async function deleteDocument(id: string, token: string): Promise<void> {
   });
   if (!res.ok) throw new Error("Failed to delete document");
 }
+
+

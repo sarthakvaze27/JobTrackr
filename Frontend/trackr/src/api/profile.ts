@@ -1,4 +1,4 @@
-const BASE = "http://localhost:8080/api";
+const BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080/api";
 
 export interface Profile {
   id: string;
@@ -29,3 +29,4 @@ export function getProfile(token: string) {
 export function updateProfile(token: string, profile: Omit<Profile, "id">) {
   return requestProfile("me", token, "PUT", profile);
 }
+
